@@ -1,25 +1,21 @@
 /* =========================================================
-   FR CREATIVE STUDIO
+   FR CREATIVE STUDIOS
    RAFAEL & JOSUÉ
    PREMIUM BOTANICAL WEDDING INVITATION
 
-   STYLE.CSS
+   RESPONSIVE EDITION
 ========================================================= */
 
 
 /* =========================================================
-   01. DESIGN VARIABLES
+   01. DESIGN SYSTEM
 ========================================================= */
 
 :root {
 
-    /* BACKGROUND COLORS */
-
     --cream: #f8f6ef;
     --cream-light: #fdfbf6;
     --cream-dark: #eee9dd;
-
-    /* BOTANICAL COLORS */
 
     --sage: #a1aa94;
     --sage-light: #dce2d5;
@@ -28,39 +24,34 @@
     --olive: #444d37;
     --olive-dark: #303929;
 
-    /* ELEGANT DETAILS */
-
     --gold: #b3a181;
     --gold-light: #d7c9ac;
 
-    /* TYPOGRAPHY */
-
     --text: #46483d;
     --text-light: #77796f;
-    --white: #ffffff;
 
-    /* FONTS */
+    --white: #ffffff;
 
     --font-title: 'Cormorant Garamond', serif;
     --font-script: 'Great Vibes', cursive;
     --font-body: 'Montserrat', sans-serif;
 
-    /* DIMENSIONS */
-
     --invitation-width: 520px;
 
-    /* TRANSITIONS */
+    --content-padding: 35px;
 
-    --transition: all 0.4s ease;
+    --transition: 0.4s ease;
 
 }
 
 
 /* =========================================================
-   02. GENERAL RESET
+   02. GLOBAL RESET
 ========================================================= */
 
-* {
+*,
+*::before,
+*::after {
 
     margin: 0;
     padding: 0;
@@ -71,10 +62,14 @@
 html {
 
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 
 }
 
 body {
+
+    margin: 0;
 
     background: #d5d9cc;
 
@@ -87,13 +82,13 @@ body {
     overflow-x: hidden;
 
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
 }
 
 img {
 
     display: block;
-
     max-width: 100%;
 
 }
@@ -110,23 +105,30 @@ button {
 
 }
 
+svg {
+
+    display: block;
+
+}
+
 ::selection {
 
     background: var(--sage);
-
     color: var(--white);
 
 }
 
 
 /* =========================================================
-   03. MAIN INVITATION CONTAINER
+   03. INVITATION CONTAINER
+
+   The invitation maintains the same visual
+   structure on desktop and mobile.
 ========================================================= */
 
 .invitation {
 
     width: 100%;
-
     max-width: var(--invitation-width);
 
     margin: 0 auto;
@@ -145,7 +147,6 @@ button {
 .invitation section {
 
     position: relative;
-
     overflow: hidden;
 
 }
@@ -155,10 +156,9 @@ button {
     width: 100%;
 
     position: relative;
-
     z-index: 2;
 
-    padding: 0 35px;
+    padding-inline: var(--content-padding);
 
     text-align: center;
 
@@ -166,7 +166,7 @@ button {
 
 
 /* =========================================================
-   04. REUSABLE TYPOGRAPHY
+   04. TYPOGRAPHY
 ========================================================= */
 
 .eyebrow {
@@ -174,11 +174,9 @@ button {
     font-family: var(--font-body);
 
     font-size: 10px;
-
     font-weight: 500;
 
     letter-spacing: 3px;
-
     line-height: 1.8;
 
     text-transform: uppercase;
@@ -193,7 +191,7 @@ button {
 
     font-family: var(--font-title);
 
-    font-size: clamp(39px, 8vw, 53px);
+    font-size: clamp(39px, 9vw, 53px);
 
     line-height: 1.1;
 
@@ -222,7 +220,6 @@ button {
 .section-divider {
 
     width: 65px;
-
     height: 1px;
 
     margin: 20px auto 30px;
@@ -231,12 +228,31 @@ button {
 
 }
 
+
+/* =========================================================
+   05. GREEN HEARTS
+========================================================= */
+
+.heart-icon {
+
+    display: block;
+
+    width: 14px;
+    height: 14px;
+
+    fill: var(--sage-dark);
+
+    color: var(--sage-dark);
+
+    flex-shrink: 0;
+
+}
+
 .small-divider {
 
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     margin: 28px auto;
@@ -255,7 +271,6 @@ button {
     display: block;
 
     width: 57px;
-
     height: 1px;
 
     margin: 0 13px;
@@ -264,24 +279,61 @@ button {
 
 }
 
+.small-divider span {
+
+    color: var(--sage-dark);
+
+}
+
+.floral-divider {
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+
+    color: var(--sage-dark);
+
+    margin: 30px 0 10px;
+
+}
+
+.floral-divider span {
+
+    color: var(--sage-dark);
+
+}
+
+.floral-divider span:first-child {
+
+    transform: rotate(180deg);
+
+}
+
+.floral-divider span:nth-child(2) {
+
+    font-size: 12px;
+
+}
+
+.floral-divider span:last-child {
+
+    font-size: 35px;
+
+}
+
 
 /* =========================================================
-   05. BOTANICAL DECORATIONS
+   06. BOTANICAL DECORATIONS
 ========================================================= */
-
-/*
-   Decorative eucalyptus-inspired foliage.
-
-   These elements are created with CSS,
-   so no additional image files are required.
-*/
 
 .botanical {
 
     position: absolute;
 
     width: 210px;
-
     height: 270px;
 
     pointer-events: none;
@@ -294,42 +346,39 @@ button {
 
         radial-gradient(
             ellipse 18px 38px at 23% 15%,
-            rgba(136, 153, 125, .55) 0 65%,
+            rgba(136,153,125,.55) 0 65%,
             transparent 70%
         ),
 
         radial-gradient(
             ellipse 24px 17px at 45% 26%,
-            rgba(160, 174, 149, .5) 0 65%,
+            rgba(160,174,149,.5) 0 65%,
             transparent 70%
         ),
 
         radial-gradient(
             ellipse 18px 35px at 58% 38%,
-            rgba(124, 145, 115, .48) 0 65%,
+            rgba(124,145,115,.48) 0 65%,
             transparent 70%
         ),
 
         radial-gradient(
             ellipse 30px 18px at 33% 51%,
-            rgba(151, 168, 141, .52) 0 65%,
+            rgba(151,168,141,.52) 0 65%,
             transparent 70%
         ),
 
         radial-gradient(
             ellipse 18px 32px at 65% 66%,
-            rgba(123, 143, 114, .48) 0 65%,
+            rgba(123,143,114,.48) 0 65%,
             transparent 70%
         );
-
-    filter: blur(.25px);
 
 }
 
 .botanical-top {
 
     top: -65px;
-
     left: -55px;
 
     transform: rotate(-19deg);
@@ -339,7 +388,6 @@ button {
 .botanical-right {
 
     top: 15px;
-
     right: -110px;
 
     transform: rotate(155deg);
@@ -349,7 +397,6 @@ button {
 .botanical-left {
 
     top: 90px;
-
     left: -125px;
 
     transform: rotate(-15deg);
@@ -358,7 +405,7 @@ button {
 
 
 /* =========================================================
-   06. WELCOME SECTION
+   07. WELCOME SECTION
 ========================================================= */
 
 .welcome-section {
@@ -374,7 +421,6 @@ button {
 .welcome-content {
 
     position: relative;
-
     z-index: 2;
 
 }
@@ -395,8 +441,6 @@ button {
 
     color: var(--olive);
 
-    text-align: center;
-
 }
 
 .verse-reference {
@@ -416,13 +460,11 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 22px;
 
     margin-top: 55px;
-
     margin-bottom: 12px;
 
     font-family: var(--font-title);
@@ -433,7 +475,7 @@ button {
 
 .monogram span:not(.monogram-divider) {
 
-    font-size: clamp(90px, 20vw, 125px);
+    font-size: 110px;
 
     line-height: 0.9;
 
@@ -446,7 +488,6 @@ button {
     display: block;
 
     width: 1px;
-
     height: 90px;
 
     background: var(--olive);
@@ -469,7 +510,7 @@ button {
 
 
 /* =========================================================
-   07. MAIN HERO PHOTOGRAPH
+   08. HERO PHOTOGRAPH
 ========================================================= */
 
 .hero-photo-section {
@@ -484,7 +525,7 @@ button {
 
     width: 100%;
 
-    height: 560px;
+    aspect-ratio: 520 / 560;
 
     position: relative;
 
@@ -495,12 +536,11 @@ button {
 .hero-photo {
 
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
 
-    object-position: center center;
+    object-position: center 25%;
 
     transition: transform 8s ease;
 
@@ -508,7 +548,7 @@ button {
 
 .hero-photo-wrapper:hover .hero-photo {
 
-    transform: scale(1.07);
+    transform: scale(1.04);
 
 }
 
@@ -521,8 +561,8 @@ button {
     background:
         linear-gradient(
             to bottom,
-            rgba(248, 246, 239, .02) 70%,
-            rgba(248, 246, 239, .12) 100%
+            transparent 70%,
+            rgba(248,246,239,.12) 100%
         );
 
     pointer-events: none;
@@ -531,7 +571,7 @@ button {
 
 
 /* =========================================================
-   08. WEDDING ANNOUNCEMENT
+   09. ANNOUNCEMENT
 ========================================================= */
 
 .announcement-section {
@@ -562,7 +602,7 @@ button {
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     gap: 20px;
 
@@ -571,6 +611,8 @@ button {
 }
 
 .family-column {
+
+    min-width: 0;
 
     text-align: center;
 
@@ -583,8 +625,6 @@ button {
     font-size: 15px;
 
     font-weight: 600;
-
-    letter-spacing: 0.5px;
 
     color: var(--olive);
 
@@ -606,12 +646,12 @@ button {
 
 
 /* =========================================================
-   09. COUPLE NAMES
+   10. COUPLE NAMES
 ========================================================= */
 
 .names-section {
 
-    padding: 45px 0 45px;
+    padding: 45px 0;
 
     background: var(--cream-light);
 
@@ -631,14 +671,14 @@ button {
 
     color: var(--olive-dark);
 
-    line-height: 1;
+    line-height: 1.05;
 
 }
 
 .couple-names span:first-child,
 .couple-names span:last-child {
 
-    font-size: clamp(82px, 17vw, 112px);
+    font-size: clamp(70px, 17vw, 105px);
 
 }
 
@@ -650,7 +690,7 @@ button {
 
     font-style: italic;
 
-    margin: 0 0 10px;
+    margin-bottom: 10px;
 
     color: var(--sage-dark);
 
@@ -672,7 +712,7 @@ button {
 
 
 /* =========================================================
-   10. WEDDING DATE
+   11. WEDDING DATE
 ========================================================= */
 
 .date-section {
@@ -702,7 +742,6 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 15px;
@@ -713,7 +752,7 @@ button {
 
     font-family: var(--font-title);
 
-    font-size: clamp(115px, 24vw, 155px);
+    font-size: clamp(100px, 24vw, 145px);
 
     font-weight: 300;
 
@@ -733,7 +772,7 @@ button {
 
     gap: 10px;
 
-    min-width: 90px;
+    min-width: 75px;
 
 }
 
@@ -753,45 +792,10 @@ button {
 
     display: block;
 
-    width: 95px;
-
+    width: 80px;
     height: 1px;
 
     background: var(--gold);
-
-}
-
-.floral-divider {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 15px;
-
-    color: var(--sage);
-
-    margin: 30px 0 10px;
-
-}
-
-.floral-divider span:first-child {
-
-    transform: rotate(180deg);
-
-}
-
-.floral-divider span:nth-child(2) {
-
-    font-size: 12px;
-
-}
-
-.floral-divider span:last-child {
-
-    font-size: 35px;
 
 }
 
@@ -807,7 +811,7 @@ button {
 
 
 /* =========================================================
-   11. LOVE STORY
+   12. LOVE STORY
 ========================================================= */
 
 .story-section {
@@ -836,7 +840,7 @@ button {
 
 .story-image-wrapper {
 
-    margin: 0 -35px;
+    margin-inline: calc(-1 * var(--content-padding));
 
     overflow: hidden;
 
@@ -846,7 +850,7 @@ button {
 
     width: 100%;
 
-    height: 590px;
+    aspect-ratio: 520 / 590;
 
     object-fit: cover;
 
@@ -856,7 +860,7 @@ button {
 
 
 /* =========================================================
-   12. COUNTDOWN
+   13. COUNTDOWN
 ========================================================= */
 
 .countdown-section {
@@ -885,7 +889,7 @@ button {
 
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
     gap: 10px;
 
@@ -893,19 +897,20 @@ button {
 
 .countdown-item {
 
+    min-width: 0;
+
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
 
     min-height: 95px;
 
-    border: 1px solid rgba(77, 91, 66, .20);
+    border: 1px solid rgba(77,91,66,.20);
 
-    background: rgba(255, 255, 255, .3);
+    background: rgba(255,255,255,.3);
 
 }
 
@@ -939,7 +944,7 @@ button {
 
 
 /* =========================================================
-   13. CEREMONY & RECEPTION
+   14. CEREMONY AND RECEPTION
 ========================================================= */
 
 .ceremony-section {
@@ -1034,7 +1039,7 @@ button {
 
 
 /* =========================================================
-   14. PREMIUM BUTTONS
+   15. BUTTONS
 ========================================================= */
 
 .wedding-button {
@@ -1042,7 +1047,6 @@ button {
     display: inline-flex;
 
     align-items: center;
-
     justify-content: center;
 
     min-height: 45px;
@@ -1067,13 +1071,12 @@ button {
 
     text-align: center;
 
+    cursor: pointer;
+
     transition:
         background .3s ease,
-        color .3s ease,
         transform .3s ease,
         box-shadow .3s ease;
-
-    cursor: pointer;
 
 }
 
@@ -1086,13 +1089,7 @@ button {
     transform: translateY(-3px);
 
     box-shadow:
-        0 10px 25px rgba(48, 57, 41, .15);
-
-}
-
-.wedding-button:active {
-
-    transform: translateY(0);
+        0 10px 25px rgba(48,57,41,.15);
 
 }
 
@@ -1106,12 +1103,12 @@ button {
 
 
 /* =========================================================
-   15. RECEPTION PHOTOGRAPH
+   16. RECEPTION IMAGE
 ========================================================= */
 
 .reception-image-wrapper {
 
-    margin: 65px -35px 0;
+    margin: 65px calc(-1 * var(--content-padding)) 0;
 
     overflow: hidden;
 
@@ -1121,7 +1118,7 @@ button {
 
     width: 100%;
 
-    height: 480px;
+    aspect-ratio: 520 / 480;
 
     object-fit: cover;
 
@@ -1131,7 +1128,7 @@ button {
 
 
 /* =========================================================
-   16. TIMELINE
+   17. TIMELINE
 ========================================================= */
 
 .timeline-section {
@@ -1159,7 +1156,6 @@ button {
     position: absolute;
 
     top: 18px;
-
     bottom: 18px;
 
     left: 105px;
@@ -1176,7 +1172,7 @@ button {
 
     display: grid;
 
-    grid-template-columns: 90px 30px 1fr;
+    grid-template-columns: 90px 30px minmax(0, 1fr);
 
     align-items: center;
 
@@ -1201,7 +1197,6 @@ button {
 .timeline-marker {
 
     width: 7px;
-
     height: 7px;
 
     border-radius: 50%;
@@ -1252,7 +1247,7 @@ button {
 
 
 /* =========================================================
-   17. RESERVED SEATS
+   18. RESERVED SEATS
 ========================================================= */
 
 .seats-section {
@@ -1280,11 +1275,9 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     width: 55px;
-
     height: 55px;
 
     margin: 25px auto;
@@ -1301,7 +1294,7 @@ button {
 
 
 /* =========================================================
-   18. GIFT SUGGESTION
+   19. GIFT SECTION
 ========================================================= */
 
 .gift-section {
@@ -1356,7 +1349,7 @@ button {
 
 
 /* =========================================================
-   19. RSVP
+   20. RSVP
 ========================================================= */
 
 .rsvp-section {
@@ -1385,7 +1378,7 @@ button {
 
 
 /* =========================================================
-   20. ADULTS ONLY
+   21. ADULTS ONLY
 ========================================================= */
 
 .adults-section {
@@ -1430,7 +1423,7 @@ button {
 
 
 /* =========================================================
-   21. CLOSING SECTION
+   22. CLOSING
 ========================================================= */
 
 .closing-section {
@@ -1481,7 +1474,7 @@ button {
 
     width: 100%;
 
-    height: 580px;
+    aspect-ratio: 520 / 580;
 
     object-fit: cover;
 
@@ -1491,12 +1484,14 @@ button {
 
 
 /* =========================================================
-   22. FOOTER
+   23. OFFICIAL FOOTER
 ========================================================= */
 
 .wedding-footer {
 
-    padding: 45px 25px 50px;
+    width: 100%;
+
+    padding: 50px 20px;
 
     background: var(--cream-light);
 
@@ -1504,33 +1499,55 @@ button {
 
 }
 
-.wedding-footer p {
+.wedding-footer .footer-love {
 
-    font-size: 9px;
+    font-family: var(--font-script);
 
-    letter-spacing: 3px;
+    font-size: 32px;
 
-    color: var(--text-light);
+    font-weight: 400;
 
-}
+    letter-spacing: 1px;
 
-.footer-heart {
-
-    font-size: 13px;
+    line-height: 1.4;
 
     color: var(--sage-dark);
 
-    margin: 20px 0;
+}
+
+.wedding-footer .footer-heart {
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin: 12px auto;
+
+    color: var(--sage-dark);
+
+}
+
+.wedding-footer .footer-heart svg {
+
+    width: 20px;
+    height: 20px;
+
+    fill: currentColor;
 
 }
 
 .wedding-footer .studio-credit {
 
-    font-size: 10px;
+    font-family: var(--font-body);
+
+    font-size: 11px;
 
     font-weight: 500;
 
     letter-spacing: 3px;
+
+    line-height: 1.6;
 
     color: var(--olive);
 
@@ -1538,7 +1555,7 @@ button {
 
 
 /* =========================================================
-   23. BACKGROUND MUSIC BUTTON
+   24. MUSIC BUTTON
 ========================================================= */
 
 .music-toggle {
@@ -1546,11 +1563,9 @@ button {
     position: fixed;
 
     width: 47px;
-
     height: 47px;
 
     right: 22px;
-
     bottom: 22px;
 
     z-index: 999;
@@ -1558,7 +1573,6 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     background: var(--olive);
@@ -1574,15 +1588,13 @@ button {
     box-shadow:
         0 6px 25px rgba(0,0,0,.16);
 
-    transition: var(--transition);
+    transition: transform .3s ease;
 
 }
 
 .music-toggle:hover {
 
     transform: scale(1.08);
-
-    background: var(--sage-dark);
 
 }
 
@@ -1601,22 +1613,18 @@ button {
 @keyframes musicPulse {
 
     0%, 100% {
-
         transform: scale(1);
-
     }
 
     50% {
-
         transform: scale(1.2);
-
     }
 
 }
 
 
 /* =========================================================
-   24. SCROLL REVEAL ANIMATIONS
+   25. REVEAL ANIMATIONS
 ========================================================= */
 
 .reveal {
@@ -1639,43 +1647,14 @@ button {
 
 }
 
-
-/* =========================================================
-   25. DECORATIVE ANIMATIONS
-========================================================= */
-
-@keyframes fadeInUp {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(30px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-    }
-
-}
-
 @keyframes gentleFloat {
 
     0%, 100% {
-
         transform: translateY(0);
-
     }
 
     50% {
-
         transform: translateY(-8px);
-
     }
 
 }
@@ -1688,7 +1667,7 @@ button {
 
 
 /* =========================================================
-   26. TABLET RESPONSIVE
+   26. RESPONSIVE — TABLET AND MOBILE
 ========================================================= */
 
 @media (max-width: 768px) {
@@ -1709,14 +1688,16 @@ button {
 
 
 /* =========================================================
-   27. MOBILE RESPONSIVE
+   27. RESPONSIVE — MOBILE
+
+   Maintain desktop design proportions.
 ========================================================= */
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
 
-    .section-inner {
+    :root {
 
-        padding: 0 25px;
+        --content-padding: clamp(18px, 6.7vw, 35px);
 
     }
 
@@ -1726,47 +1707,27 @@ button {
 
     }
 
-    .bible-verse {
-
-        font-size: 11px;
-
-    }
-
     .monogram {
 
-        gap: 18px;
-
-        margin-top: 45px;
+        gap: clamp(12px, 4vw, 22px);
 
     }
 
     .monogram span:not(.monogram-divider) {
 
-        font-size: 90px;
+        font-size: clamp(80px, 21vw, 110px);
 
     }
 
     .monogram-divider {
 
-        height: 70px;
-
-    }
-
-    .hero-photo-wrapper {
-
-        height: 490px;
-
-    }
-
-    .announcement-section {
-
-        padding: 65px 0 45px;
+        height: clamp(65px, 17vw, 90px);
 
     }
 
     .invitation-message {
 
-        font-size: 13px;
+        font-size: clamp(12px, 2.9vw, 15px);
 
     }
 
@@ -1776,84 +1737,46 @@ button {
 
     }
 
-    .family-column h3 {
-
-        font-size: 13px;
-
-    }
-
-    .family-column p {
-
-        font-size: 13px;
-
-    }
-
-    .names-section {
-
-        padding: 40px 0;
-
-    }
-
     .couple-names span:first-child,
     .couple-names span:last-child {
 
-        font-size: 85px;
+        font-size: clamp(70px, 17vw, 105px);
+
+    }
+
+    .date-display {
+
+        gap: clamp(8px, 2.8vw, 15px);
 
     }
 
     .date-number {
 
-        font-size: 115px;
+        font-size: clamp(95px, 24vw, 145px);
 
     }
 
     .date-side {
 
-        min-width: 65px;
+        min-width: clamp(60px, 15vw, 75px);
 
     }
 
     .date-side p {
 
-        font-size: 15px;
+        font-size: clamp(14px, 3.4vw, 18px);
 
     }
 
     .date-line {
 
-        width: 70px;
-
-    }
-
-    .story-section {
-
-        padding-top: 75px;
+        width: clamp(60px, 15vw, 80px);
 
     }
 
     .story-description {
 
-        font-size: 19px;
-
-    }
-
-    .story-image-wrapper {
-
-        margin-left: -25px;
-
-        margin-right: -25px;
-
-    }
-
-    .story-image-wrapper img {
-
-        height: 520px;
-
-    }
-
-    .countdown-section {
-
-        padding: 75px 0;
+        font-size: clamp(18px, 4vw, 21px);
 
     }
 
@@ -1871,59 +1794,33 @@ button {
 
     .countdown-item span {
 
-        font-size: 33px;
+        font-size: clamp(27px, 7vw, 42px);
 
     }
 
     .countdown-item small {
 
-        font-size: 7px;
+        font-size: clamp(6px, 1.5vw, 8px);
 
         letter-spacing: .5px;
 
     }
 
-    .ceremony-section {
-
-        padding-top: 80px;
-
-    }
-
     .event-title {
 
-        font-size: 27px;
+        font-size: clamp(26px, 6vw, 32px);
 
     }
 
     .event-location {
 
-        font-size: 17px;
+        font-size: clamp(16px, 3.5vw, 19px);
 
     }
 
     .event-address {
 
-        font-size: 15px;
-
-    }
-
-    .reception-image-wrapper {
-
-        margin-left: -25px;
-
-        margin-right: -25px;
-
-    }
-
-    .reception-image-wrapper img {
-
-        height: 420px;
-
-    }
-
-    .timeline-section {
-
-        padding: 80px 0;
+        font-size: clamp(15px, 3.2vw, 17px);
 
     }
 
@@ -1941,19 +1838,14 @@ button {
 
     .timeline-item {
 
-        grid-template-columns: 80px 30px 1fr;
+        grid-template-columns:
+            80px 30px minmax(0, 1fr);
 
     }
 
     .timeline-icon {
 
         font-size: 26px;
-
-    }
-
-    .timeline-content {
-
-        padding-left: 10px;
 
     }
 
@@ -1964,20 +1856,12 @@ button {
 
     }
 
-    .closing-image-wrapper img {
-
-        height: 480px;
-
-    }
-
     .music-toggle {
 
         right: 15px;
-
         bottom: 15px;
 
         width: 44px;
-
         height: 44px;
 
     }
@@ -1986,73 +1870,64 @@ button {
 
 
 /* =========================================================
-   28. SMALL MOBILE DEVICES
+   28. VERY SMALL SCREENS
 ========================================================= */
 
 @media (max-width: 360px) {
 
-    .section-inner {
-
-        padding: 0 18px;
-
-    }
-
     .couple-names span:first-child,
     .couple-names span:last-child {
 
-        font-size: 75px;
-
-    }
-
-    .date-display {
-
-        gap: 8px;
+        font-size: 70px;
 
     }
 
     .date-number {
 
-        font-size: 100px;
+        font-size: 95px;
 
     }
 
     .date-side {
 
-        min-width: 60px;
+        min-width: 55px;
 
     }
 
     .date-line {
 
-        width: 60px;
-
-    }
-
-    .story-image-wrapper {
-
-        margin-left: -18px;
-
-        margin-right: -18px;
-
-    }
-
-    .reception-image-wrapper {
-
-        margin-left: -18px;
-
-        margin-right: -18px;
+        width: 55px;
 
     }
 
     .countdown-item span {
 
-        font-size: 28px;
+        font-size: 27px;
 
     }
 
     .countdown-item small {
 
         font-size: 6px;
+
+    }
+
+    .timeline {
+
+        max-width: 280px;
+
+    }
+
+    .timeline::before {
+
+        left: 85px;
+
+    }
+
+    .timeline-item {
+
+        grid-template-columns:
+            70px 30px minmax(0, 1fr);
 
     }
 
@@ -2096,5 +1971,5 @@ button {
 
 /* =========================================================
    END OF STYLE.CSS
-   FR CREATIVE STUDIO
+   FR CREATIVE STUDIOS
 ========================================================= */
